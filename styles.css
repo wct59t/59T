@@ -565,6 +565,12 @@ footer .cart-display-container button, footer .buttons-container button, footer 
         transform: translate(-50%, -50%) scale(1.25);
         pointer-events: none;
     }
+
+    .rotation-handle {
+        width: 15px;
+        height: 15px;
+        font-size: 12px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -598,5 +604,11 @@ footer .cart-display-container button, footer .buttons-container button, footer 
         left: 50%;
         transform: translate(-50%, -50%) scale(1.25);
         pointer-events: none;
+    }
+
+    .rotation-handle {
+        width: 10px;
+        height: 10px;
+        font-size: 10px;
     }
 }
