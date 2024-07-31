@@ -423,6 +423,24 @@ document.addEventListener("DOMContentLoaded", () => {
             }, { once: true });
         });
 
+        container.appendChild(newElement);
+        productDisplay.appendChild(container);
+
+        // 支持触摸设备上的拖拽和旋转操作
+        container.addEventListener("touchstart", (e) => {
+            let touch = e.touches[0];
+            offsetX = touch.clientX - container.offsetLeft;
+            offsetY = touch.clientY - container.offsetTop;
+            currentDraggedElement = container;
+
+            document.addEventListener("touchmove", handleTouchMove);
+
+            document.addEventListener("touchend", (e) => {
+                document.removeEventListener("touchmove", handleTouchMove);
+                handleDrop(e.changedTouches[0]);
+            }, { once: true });
+        });
+
         rotationHandle.addEventListener("touchstart", (e) => {
             e.stopPropagation();
             let touch = e.touches[0];
@@ -531,7 +549,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("touchend", (e) => {
         if (currentDraggedElement && currentDraggedElement.classList.contains("draggable")) {
             currentDraggedElement.classList.remove('dragging');
-            currentDraggedElement = null;  
+            currentDraggedElement = null;  // 取消记录当前拖拽的元素
         }
     });
 
