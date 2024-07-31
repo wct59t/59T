@@ -13,7 +13,7 @@ header {
     padding: 10px;
     position: fixed;
     top: 0;
-    width: calc(100% - 17px);
+    width: 100%;
     z-index: 1000;
 }
 
@@ -23,6 +23,7 @@ header {
 
 .title {
     margin-left: 20px;
+    flex: 1;
 }
 
 .title h1 {
@@ -31,9 +32,9 @@ header {
 }
 
 nav {
-    flex-grow: 1;
     display: flex;
     justify-content: flex-end;
+    flex: 1;
 }
 
 nav ul {
@@ -41,10 +42,10 @@ nav ul {
     display: flex;
     margin: 0;
     padding: 0;
+    flex-wrap: wrap;
 }
 
 nav ul li {
-    position: relative;
     margin-left: 20px;
     text-align: center;
 }
@@ -163,7 +164,6 @@ main {
     font-weight: bold;
 }
 
-/* 通用样式 */
 .image-slider-container {
     width: calc(100% - 200px); /* 确保展示区占满宽度 */
     overflow-x: auto; /* 始终显示水平滚动条 */
@@ -223,6 +223,7 @@ footer {
     justify-content: space-around;
     align-items: center;
     width: 50%;
+    flex-wrap: wrap; /* 确保按钮在小屏幕上换行 */
 }
 
 footer .cart-display-container button, footer .buttons-container button, footer .buttons-container a {
@@ -235,6 +236,25 @@ footer .cart-display-container button, footer .buttons-container button, footer 
     margin: 0 5px;
     font-size: 1em;
     flex-shrink: 0;
+}
+
+/* 确保按钮在小屏幕上能够合理缩小 */
+@media (max-width: 768px) {
+    footer .cart-display-container button, footer .buttons-container button, footer .buttons-container a {
+        width: 45%; /* 每行放两个，确保按钮在小屏幕上能够合理缩小 */
+        margin: 5px;
+        padding: 8px; /* 更小的按钮 */
+        font-size: 0.9em; /* 更小的字体 */
+    }
+}
+
+@media (max-width: 480px) {
+    footer .cart-display-container button, footer .buttons-container button, footer .buttons-container a {
+        width: 100%; /* 每行放一个，确保按钮在小屏幕上能够合理缩小 */
+        margin: 5px 0;
+        padding: 6px; /* 更小的按钮 */
+        font-size: 0.8em; /* 更小的字体 */
+    }
 }
 
 .overlay {
@@ -330,11 +350,13 @@ footer .cart-display-container button, footer .buttons-container button, footer 
     display: flex;
     justify-content: space-around;
     margin-bottom: 20px;
+    flex-wrap: wrap; /* 确保按钮在小屏幕上换行 */
 }
 
 .product-display .product-btn {
     flex: 1;
     margin: 0 5px;
+    min-width: 100px; /* 确保按钮在小屏幕上有足够的宽度 */
 }
 
 .product-images {
@@ -343,6 +365,7 @@ footer .cart-display-container button, footer .buttons-container button, footer 
     justify-content: center;
     align-items: flex-start;
     position: relative;
+    flex-wrap: wrap; /* 确保图片在小屏幕上换行 */
 }
 
 .product-image-container {
@@ -351,6 +374,7 @@ footer .cart-display-container button, footer .buttons-container button, footer 
     align-items: center;
     margin: 10px;
     position: relative; /* 为了使选项可以绝对定位 */
+    max-width: 100%; /* 确保图片容器在小屏幕上不会超出 */
 }
 
 .product-image-container img {
@@ -390,7 +414,6 @@ footer .cart-display-container button, footer .buttons-container button, footer 
     font-size: 0.8em;
 }
 
-/* 缩小图片以适应布局 */
 .selected-item img {
     width: 2cm; /* 适当缩小图片以适应布局 */
     height: 2cm;
@@ -407,28 +430,30 @@ footer .cart-display-container button, footer .buttons-container button, footer 
     position: absolute;
     cursor: move;
     user-select: none;
-    width: 15px; /* 统一设置容器宽度 */
-    height: 15px; /* 统一设置容器高度 */
+    width: 6cm; /* 统一设置容器宽度 */
+    height: 6cm; /* 统一设置容器高度 */
     position: relative; /* 使图片能够绝对定位 */
+    overflow: hidden; /* 确保图片不会超出容器 */
 }
 
 .draggable img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%; /* 将图片实际大小设置为容器的100% */
+    height: 100%; /* 将图片实际大小设置为容器的100% */
     object-fit: contain; /* 确保图片保持原比例 */
     position: absolute; /* 使图片在容器中居中 */
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%)scale(1.25);
+    transform: translate(-50%, -50%) scale(1.25);
+    pointer-events: none; /* 禁用图片的鼠标事件 */
 }
 
 .rotation-handle {
     position: absolute;
-    top: +20px;
+    top: -20px;
     left: 50%;
     transform: translateX(-50%);
-    width: 17px;
-    height: 17px;
+    width: 20px;
+    height: 20px;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 50%;
     cursor: pointer;
@@ -445,23 +470,38 @@ footer .cart-display-container button, footer .buttons-container button, footer 
     header {
         flex-direction: column;
         align-items: flex-start;
+        padding: 5px;
     }
 
-    footer {
-        flex-direction: column;
-        align-items: stretch;
-        text-align: center;
+    .logo {
+        margin-bottom: 5px;
+    }
+
+    .title {
+        margin-left: 0;
+    }
+
+    nav ul {
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    nav ul li {
+        margin: 5px 0;
     }
 
     .cart-display-container, .buttons-container {
         width: 100%;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
         margin: 10px 0;
     }
 
     footer .cart-display-container button, footer .buttons-container button, footer .buttons-container a {
-        width: 100%;
-        margin: 5px 0;
+        width: 45%; /* 每行放两个，确保按钮在小屏幕上能够合理缩小 */
+        margin: 5px;
+        padding: 8px; /* 更小的按钮 */
+        font-size: 0.9em; /* 更小的字体 */
     }
 
     .product-display {
@@ -486,5 +526,77 @@ footer .cart-display-container button, footer .buttons-container button, footer 
 
     .scrollable {
         max-height: 300px;
+    }
+
+    .scheme-description {
+        flex-direction: column;
+    }
+
+    .scheme {
+        max-width: 100%;
+    }
+
+    .category-title, .horizontal-price {
+        width: 100%;
+    }
+
+    .image-slider-container {
+        width: 100%;
+    }
+
+    .image-item {
+        width: 90%;
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
+
+    .draggable {
+        width: 3cm; /* 小屏幕上调整容器大小 */
+        height: 3cm; /* 小屏幕上调整容器大小 */
+    }
+
+    .draggable img {
+        width: 100%; /* 同步调整图片大小 */
+        height: 100%; /* 同步调整图片大小 */
+        object-fit: contain; /* 确保图片保持比例 */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1.25);
+        pointer-events: none;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 5px;
+    }
+
+    .title h1 {
+        font-size: 1.5em;
+    }
+
+    .product-display {
+        padding: 5px;
+    }
+
+    .selected-items {
+        padding: 5px;
+    }
+
+    .draggable {
+        width: 2.5cm; /* 更小屏幕上调整容器大小 */
+        height: 2.5cm; /* 更小屏幕上调整容器大小 */
+    }
+
+    .draggable img {
+        width: 100%; /* 同步调整图片大小 */
+        height: 100%; /* 同步调整图片大小 */
+        object-fit: contain; /* 确保图片保持比例 */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1.25);
+        pointer-events: none;
     }
 }
