@@ -363,6 +363,12 @@ document.addEventListener("DOMContentLoaded", () => {
             container.style.top = `${e.clientY - offsetY}px`;
         }
 
+        function onTouchMove(e) {
+            let touch = e.touches[0];
+            container.style.left = `${touch.clientX - offsetX}px`;
+            container.style.top = `${touch.clientY - offsetY}px`;
+        }
+
         container.addEventListener("mousedown", (e) => {
             offsetX = e.clientX - container.offsetLeft;
             offsetY = e.clientY - container.offsetTop;
@@ -370,22 +376,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
             document.addEventListener("mousemove", onMouseMove);
 
-            document.addEventListener("mouseup", (e) => {
+            document.addEventListener("mouseup", () => {
                 document.removeEventListener("mousemove", onMouseMove);
-                handleDrop(e);
+                currentDraggedElement = null;  // 取消记录当前拖拽的元素
             }, { once: true });
         });
 
-        function handleDrop(e) {
-            // 检查是否在移除按钮上
-            const removeBtnRect = removeBtn.getBoundingClientRect();
-            if (e.clientX > removeBtnRect.left && e.clientX < removeBtnRect.right && e.clientY > removeBtnRect.top && e.clientY < removeBtnRect.bottom) {
-                removeBtn.dispatchEvent(new Event("drop"));
-            }
-            currentDraggedElement = null;  // 取消记录当前拖拽的元素
-        }
+        container.addEventListener("touchstart", (e) => {
+            let touch = e.touches[0];
+            offsetX = touch.clientX - container.offsetLeft;
+            offsetY = touch.clientY - container.offsetTop;
+            currentDraggedElement = container;
 
-        // 旋转功能
+            document.addEventListener("touchmove", onTouchMove);
+
+            document.addEventListener("touchend", () => {
+                document.removeEventListener("touchmove", onTouchMove);
+                currentDraggedElement = null;  // 取消记录当前拖拽的元素
+            }, { once: true });
+        });
+
         const rotationHandle = document.createElement("div");
         rotationHandle.classList.add("rotation-handle");
         rotationHandle.innerHTML = "↻";
@@ -413,24 +423,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }, { once: true });
         });
 
-        container.appendChild(newElement);
-        productDisplay.appendChild(container);
-
-        // 支持触摸设备上的拖拽和旋转操作
-        container.addEventListener("touchstart", (e) => {
-            let touch = e.touches[0];
-            offsetX = touch.clientX - container.offsetLeft;
-            offsetY = touch.clientY - container.offsetTop;
-            currentDraggedElement = container;
-
-            document.addEventListener("touchmove", handleTouchMove);
-
-            document.addEventListener("touchend", (e) => {
-                document.removeEventListener("touchmove", handleTouchMove);
-                handleDrop(e.changedTouches[0]);
-            }, { once: true });
-        });
-
         rotationHandle.addEventListener("touchstart", (e) => {
             e.stopPropagation();
             let touch = e.touches[0];
@@ -452,6 +444,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.removeEventListener("touchmove", onTouchRotateMove);
             }, { once: true });
         });
+
+        container.appendChild(newElement);
+        productDisplay.appendChild(container);
     }
 
     const productDisplay = document.querySelector('.product-display');
@@ -481,8 +476,8 @@ document.addEventListener("DOMContentLoaded", () => {
             container.style.left = `${e.clientX - productDisplay.offsetLeft}px`;
             container.style.top = `${e.clientY - productDisplay.offsetTop}px`;
             container.style.transform = "rotate(0deg)";
-            container.style.width = "6cm";
-            container.style.height = "6cm";
+            container.style.width = window.innerWidth <= 480 ? "2.5cm" : window.innerWidth <= 768 ? "3cm" : "6cm"; // 根据屏幕大小调整
+            container.style.height = window.innerWidth <= 480 ? "2.5cm" : window.innerWidth <= 768 ? "3cm" : "6cm"; // 根据屏幕大小调整
             newElement.style.width = "100%";
             newElement.style.height = "100%";
             newElement.style.objectFit = "contain";
@@ -520,7 +515,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 支持触摸设备上的拖拽操作
     document.addEventListener("touchstart", (e) => {
         if (e.target.classList.contains("draggable")) {
             isDraggingFromSelectedItems = false;
