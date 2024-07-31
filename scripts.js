@@ -531,7 +531,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("touchend", (e) => {
         if (currentDraggedElement && currentDraggedElement.classList.contains("draggable")) {
             currentDraggedElement.classList.remove('dragging');
-            currentDraggedElement = null;  // 取消记录当前拖拽的元素
+            currentDraggedElement = null;  
         }
     });
 
