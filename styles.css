@@ -1,0 +1,490 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(51, 51, 51, 1);
+    color: #fff;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    width: calc(100% - 17px);
+    z-index: 1000;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.title {
+    margin-left: 20px;
+}
+
+.title h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+nav {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    position: relative;
+    margin-left: 20px;
+    text-align: center;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    white-space: nowrap;
+}
+
+nav ul .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #444;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: auto;
+}
+
+nav ul .dropdown li {
+    width: 100%;
+}
+
+nav ul .dropdown li a {
+    display: block;
+    min-width: calc(4ch + 20px);
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    background-color: #444;
+    box-sizing: border-box;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    padding-top: 70px;
+}
+
+.content-area {
+    flex-grow: 1;
+    background-color: #f9f9f9;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.scheme-description {
+    display: flex;
+    justify-content: space-around;
+    flex-basis: 100%;
+    margin-bottom: 20px;
+}
+
+.scheme {
+    flex: 1;
+    max-width: 45%;
+    margin: 1%;
+    padding: 20px;
+    background-color: #f5f5dc;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.scheme strong {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.image-category {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.category-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #f5f5dc;
+}
+
+.category-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    padding: 0 20px;
+    background-color: #f5f5dc;
+    text-align: center;
+    box-sizing: border-box;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.vertical-title {
+    writing-mode: vertical-lr;
+    margin: 0;
+    padding: 10px 0;
+}
+
+.horizontal-price p {
+    margin: 0;
+    padding: 10px 0;
+    background-color: #f5f5dc;
+    width: 200px;
+    text-align: center;
+    font-size: 0.75em;
+    font-weight: bold;
+}
+
+/* 通用样式 */
+.image-slider-container {
+    width: calc(100% - 200px); /* 确保展示区占满宽度 */
+    overflow-x: auto; /* 始终显示水平滚动条 */
+    white-space: nowrap; /* 确保内容不换行 */
+}
+
+.image-slider {
+    display: flex;
+}
+
+.image-item {
+    display: inline-block;
+    width: 6cm; /* 固定宽度 */
+    height: 8cm; /* 固定高度 */
+    text-align: center;
+    margin-right: 10px; /* 间距 */
+}
+
+.image-item img {
+    width: 100%; /* 图片宽度100% */
+    height: 6cm; /* 固定图片高度 */
+    object-fit: contain; /* 确保图片保持原比例 */
+}
+
+.image-item p {
+    font-size: 1em;
+    font-weight: bold; /* 加粗名称 */
+    margin: 10px 0 0 0; /* 上下左右边距 */
+    line-height: 1.2em; /* 行高 */
+    overflow: hidden; /* 避免名称过长溢出 */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(51, 51, 51, 1);
+    color: #fff;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.cart-display-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 50%;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 50%;
+}
+
+footer .cart-display-container button, footer .buttons-container button, footer .buttons-container a {
+    background-color: #555;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 0 5px;
+    font-size: 1em;
+    flex-shrink: 0;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+}
+
+.overlay img {
+    max-width: 90%;
+    max-height: 80%;
+}
+
+.controls {
+    position: absolute;
+    bottom: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.controls button, .controls select {
+    padding: 10px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.cart-items-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1001;
+    overflow-y: auto;
+}
+
+.cart-items-container {
+    background: #fff;
+    margin: 50px auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.cart-item button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.cart-item button:hover {
+    background-color: #d32f2f;
+}
+
+.cart-item span {
+    flex-grow: 1;
+}
+
+.creation-area {
+    display: flex;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.product-display {
+    flex: 4;
+    padding: 20px;
+    text-align: center;
+    position: relative; /* 为了使选项可以绝对定位 */
+}
+
+.product-display .product-btns {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.product-display .product-btn {
+    flex: 1;
+    margin: 0 5px;
+}
+
+.product-images {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+}
+
+.product-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    position: relative; /* 为了使选项可以绝对定位 */
+}
+
+.product-image-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+.product-image-container p {
+    margin: 0;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+}
+
+.selected-items {
+    flex: 1;
+    padding: 20px;
+    background-color: #f9f9f9;
+    overflow-y: auto;
+}
+
+.selected-items h2 {
+    text-align: center;
+}
+
+.scrollable {
+    max-height: 500px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.selected-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 0.8em;
+}
+
+/* 缩小图片以适应布局 */
+.selected-item img {
+    width: 2cm; /* 适当缩小图片以适应布局 */
+    height: 2cm;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.selected-item span {
+    display: flex;
+    flex-direction: column;
+}
+
+.draggable {
+    position: absolute;
+    cursor: move;
+    user-select: none;
+    width: 15px; /* 统一设置容器宽度 */
+    height: 15px; /* 统一设置容器高度 */
+    position: relative; /* 使图片能够绝对定位 */
+}
+
+.draggable img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* 确保图片保持原比例 */
+    position: absolute; /* 使图片在容器中居中 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)scale(1.25);
+}
+
+.rotation-handle {
+    position: absolute;
+    top: +20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 17px;
+    height: 17px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    z-index: 1002;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .cart-display-container, .buttons-container {
+        width: 100%;
+        justify-content: center;
+        margin: 10px 0;
+    }
+
+    footer .cart-display-container button, footer .buttons-container button, footer .buttons-container a {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .product-display {
+        padding: 10px;
+    }
+
+    .product-image-container {
+        margin: 5px;
+    }
+
+    .image-category {
+        flex-direction: column;
+    }
+
+    .image-slider {
+        margin-left: 0;
+    }
+
+    .selected-items {
+        padding: 10px;
+    }
+
+    .scrollable {
+        max-height: 300px;
+    }
+}
