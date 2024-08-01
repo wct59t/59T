@@ -13,7 +13,7 @@ header {
     padding: 10px;
     position: fixed;
     top: 0;
-    width: 100%;
+    width: calc(100% - 17px);
     z-index: 1000;
 }
 
@@ -433,7 +433,7 @@ footer .cart-display-container button, footer .buttons-container button, footer 
     width: 6cm; /* 统一设置容器宽度 */
     height: 6cm; /* 统一设置容器高度 */
     position: relative; /* 使图片能够绝对定位 */
-    overflow: hidden; /* 确保图片不会超出容器 */
+   /* 确保图片不会超出容器 */
 }
 
 .draggable img {
@@ -556,8 +556,8 @@ footer .cart-display-container button, footer .buttons-container button, footer 
     }
 
     .draggable img {
-        width: 100%; /* 同步调整图片大小 */
-        height: 100%; /* 同步调整图片大小 */
+        max-width:50%; /* 同步调整图片大小 */
+        max-height: 50%; /* 同步调整图片大小 */
         object-fit: contain; /* 确保图片保持比例 */
         position: absolute;
         top: 50%;
@@ -596,8 +596,8 @@ footer .cart-display-container button, footer .buttons-container button, footer 
     }
 
     .draggable img {
-        width: 100%; /* 同步调整图片大小 */
-        height: 100%; /* 同步调整图片大小 */
+        max-width: 42%; /* 同步调整图片大小 */
+        max-height: 42%; /* 同步调整图片大小 */
         object-fit: contain; /* 确保图片保持比例 */
         position: absolute;
         top: 50%;
