@@ -466,6 +466,13 @@ footer .cart-display-container button, footer .buttons-container button, footer 
     z-index: 1002;
 }
 
+/* 确保产品示意图在不同屏幕上等比例缩小 */
+.small-product-image {
+    width: 50%; /* 将宽度设为原图的一半 */
+    height: auto; /* 自动调整高度以保持宽高比例 */
+}
+
+/* 响应式设计：调整小屏幕上的尺寸 */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
