@@ -305,12 +305,12 @@ document.addEventListener("DOMContentLoaded", () => {
                         productImageBack.src = "socks.png";
                         break;
                     case "towel":
-                        productImageFront.src = "images/towel-front.jpg";
-                        productImageBack.src = "images/towel-back.jpg";
-                        break;
-                    default:
                         productImageFront.src = "towel.png";
                         productImageBack.src = "towel.png";
+                        break;
+                    default:
+                        productImageFront.src = "59t logo.jpg";
+                        productImageBack.src = "59t logo.jpg";
                 }
 
                 // 添加缩小图片的新CSS类
