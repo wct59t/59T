@@ -289,36 +289,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 switch (product) {
                     case "pencil-case":
-                        productImageFront.src = "pencil-case-front.jpeg";
-                        productImageBack.src = "pencil-case-front.jpeg";
+                        productImageFront.src = "pencilbag.png";
+                        productImageBack.src = "pencilbag.png";
                         break;
                     case "yo-yo-card-holder":
                         productImageFront.src = "images/yo-yo-card-holder-front.jpg";
                         productImageBack.src = "images/yo-yo-card-holder-back.jpg";
                         break;
                     case "cup-sleeve":
-                        productImageFront.src = "images/cup-sleeve-front.jpg";
-                        productImageBack.src = "images/cup-sleeve-back.jpg";
+                        productImageFront.src = "cupbag.png";
+                        productImageBack.src = "cupbag.png";
                         break;
                     case "socks":
-                        productImageFront.src = "images/socks-front.jpg";
-                        productImageBack.src = "images/socks-back.jpg";
+                        productImageFront.src = "socks.png";
+                        productImageBack.src = "socks.png";
                         break;
                     case "towel":
                         productImageFront.src = "images/towel-front.jpg";
                         productImageBack.src = "images/towel-back.jpg";
                         break;
                     default:
-                        productImageFront.src = "images/59t logo.jpg";
-                        productImageBack.src = "images/59t logo.jpg";
+                        productImageFront.src = "towel.png";
+                        productImageBack.src = "towel.png";
                 }
+
+                // 添加缩小图片的新CSS类
+                productImageFront.classList.add("small-product-image");
+                productImageBack.classList.add("small-product-image");
 
                 const productName = e.target.textContent;
                 const frontLabel = productImageFront.nextElementSibling;
                 const backLabel = productImageBack.nextElementSibling;
 
-                frontLabel.textContent = `${productName} 正面示意圖`;
-                backLabel.textContent = `${productName} 反面示意圖`;
+                frontLabel.textContent = `${productName} 正面/外側示意圖`;
+                backLabel.textContent = `${productName} 反面/內側示意圖`;
 
                 productImagesContainer.style.display = "flex";
             });
